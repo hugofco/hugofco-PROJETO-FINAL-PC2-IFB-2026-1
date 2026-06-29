@@ -1,6 +1,6 @@
 # hugofco-PROJETO-FINAL-PC2-IFB-2026-1
 
-# Sistema de Gestão de Clínica veterinária
+## Sistema de Gestão de Clínica veterinária
 
 Sistema simples para uma clínica veterinária de pequeno porte registrar
 tutores, animais, consultas e gerar relatórios gerenciais. Roda localmente
@@ -8,9 +8,11 @@ como um servidor HTTP em Java puro (sem frameworks), com interface em
 formulários HTML — sem necessidade de terminal para operar o sistema do
 dia a dia.
 
-### Como executar: no próprio vscode, ao rodar, ele irá iniciar o server local em: http://localhost:8080. Você pode acessar em um navegador ou dentro do próprio vscode.
+### Como executar 
+No próprio vscode, ao rodar, ele irá iniciar o server local em: http://localhost:8080. Você pode acessar em um navegador ou dentro do próprio vscode.
 
 ## Estrutura do projeto
+
 modelo/         → Pessoa, Funcionario, Tutor, Animal, Cachorro, Gato, Passaro, Porte, EspeciePassaro
 
 comportamento/  → Vacinavel, Internavel, CarteiraVacinacao, RegistroVacina, Internacao
