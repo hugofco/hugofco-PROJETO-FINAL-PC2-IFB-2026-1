@@ -1,6 +1,6 @@
 # hugofco-PROJETO-FINAL-PC2-IFB-2026-1
 
-# Sistema de Gestão, Clínica Veterinária
+# Sistema de Gestão de Clínica veterinária
 
 Sistema simples para uma clínica veterinária de pequeno porte registrar
 tutores, animais, consultas e gerar relatórios gerenciais. Roda localmente
