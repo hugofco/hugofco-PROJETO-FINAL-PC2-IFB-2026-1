@@ -8,7 +8,7 @@ como um servidor HTTP em Java puro (sem frameworks), com interface em
 formulários HTML, sem necessidade de terminal para operar o sistema do
 dia a dia.
 
-### Como executar 
+## Como executar 
 No próprio vscode, ao rodar, ele irá iniciar o server local em: http://localhost:8080. Você pode acessar em um navegador ou dentro do próprio vscode.
 
 ## Estrutura do projeto
