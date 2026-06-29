@@ -98,7 +98,7 @@ clínica"* e *"alguns animais podem precisar ficar internados... outros não
 têm estrutura de internação disponível"*. Nos diagramas v1 e v2, porém,
 campos como "Status Vacinação" e atributos de internação apareciam soltos
 em `Laudo`/`Consulta`, presentes para **qualquer** animal, inclusive
-pássaros, que pelo enunciado não vacinam.
+pássaros, que aqui, não vacinam.
 
 Essa é exatamente a situação descrita na dica de modelagem do projeto:
 *"quando vocês quiserem adicionar um comportamento a uma classe, mas ele
@@ -113,7 +113,7 @@ acidente, em vez de só "não fazer sentido" em tempo de execução.
 ### 5. Carteira de vacinação e internação ganharam classes próprias
 
 O enunciado pede para a clínica "consultar e **atualizar**" o histórico de
-vacinação — isso pede uma lista de registros, não um único campo de texto
+vacinação, isso pede uma lista de registros, não um único campo de texto
 como existia nos dois diagramas anteriores (`Status Vacinação: char`).
 Criamos `RegistroVacina` (nome da vacina e data) e `CarteiraVacinacao`
 (lista de registros), permitindo que cada vacina aplicada seja registrada
