@@ -5,7 +5,7 @@
 Sistema simples para uma clínica veterinária de pequeno porte registrar
 tutores, animais, consultas e gerar relatórios gerenciais. Roda localmente
 como um servidor HTTP em Java puro (sem frameworks), com interface em
-formulários HTML — sem necessidade de terminal para operar o sistema do
+formulários HTML, sem necessidade de terminal para operar o sistema do
 dia a dia.
 
 ### Como executar 
@@ -78,7 +78,7 @@ atentar. A solução mais "óbvia" seria criar uma superclasse intermediária
 (`MamiferoDomestico`, por exemplo) só para hospedar esses dois campos.
 
 Decidimos **não** fazer isso. Os atributos serem iguais não significa que
-exista uma relação real de domínio ali — é coincidência. O que de fato é
+exista uma relação real de domínio ali é coincidência. O que de fato é
 comum e repetido entre as espécies é o **comportamento de calcular o valor
 da consulta**: cada subclasse fazia (ou faria) esse cálculo do zero. Por
 isso a duplicação foi eliminada com um método abstrato em `Animal`
@@ -120,7 +120,7 @@ Criamos `RegistroVacina` (nome da vacina e data) e `CarteiraVacinacao`
 sem sobrescrever a anterior.
 
 Pelo mesmo motivo, a internação ganhou a classe `Internacao`, com data de
-entrada, data de saída e cálculo de valor por dia — atendendo
+entrada, data de saída e cálculo de valor por dia, atendendo
 diretamente ao requisito de que a internação "gera uma cobrança separada da
 consulta, calculada por dia de internação".
 
@@ -132,7 +132,7 @@ dados do animal, dados de vacinação, prioridade de agendamento, etc. Na
 versão atual, `Consulta` guarda só o que de fato é dela: data, veterinário
 responsável, animal atendido, motivo do atendimento e resultado. O cálculo
 de valor final combina o valor base do animal com o multiplicador do
-motivo — cada classe contribuindo apenas com a informação que ela mesma
+motivo, cada classe contribuindo apenas com a informação que ela mesma
 possui.
 
 ### 7. Nova classe `ContaMedica` para fechar a cobrança
@@ -140,7 +140,7 @@ possui.
 Nenhum dos diagramas anteriores modelava explicitamente como o valor da
 consulta e o valor da internação se somam para o tutor pagar. Criamos
 `ContaMedica`, que recebe a consulta e (opcionalmente) a internação, aplica
-desconto e devolve o valor final — sem misturar essa responsabilidade
+desconto e devolve o valor final, sem misturar essa responsabilidade
 dentro de `Consulta` ou `Animal`.
 
 ### 8. Nova classe `Clinica` para gestão e relatório
