@@ -29,12 +29,12 @@ App.java       → ponto de entrada
 
 A aplicação é dividida em três telas, navegáveis pelo menu principal:
 
-1. **Cadastro** (`/cadastro`) — cadastra um tutor e um animal (cão, gato ou
+1. **Cadastro** (`/cadastro`) cadastra um tutor e um animal (cão, gato ou
    pássaro), com campos que mudam conforme a espécie escolhida.
-2. **Consulta** (`/consulta`) — registra uma consulta para um animal já
+2. **Consulta** (`/consulta`) registra uma consulta para um animal já
    cadastrado, com motivo do atendimento, vacina aplicada (se aplicável) e
    opção de internação.
-3. **Relatório** (`/relatorio`) — informa um período e mostra total
+3. **Relatório** (`/relatorio`) informa um período e mostra total
    arrecadado, número de consultas e animais atendidos naquele intervalo.
 
 ---
@@ -49,7 +49,7 @@ das decisões e a capacidade de justificá-las").
 
 Nos dois diagramas anteriores, a superclasse abstrata se chamava `Usuario`.
 O nome sugere "usuário do sistema" (alguém que faz login), mas na prática a
-classe só representa "alguém com nome, CPF, telefone e e-mail" — tanto o
+classe só representa "alguém com nome, CPF, telefone e e-mail" tanto o
 funcionário quanto o tutor. Renomeamos para `Pessoa`, que descreve melhor o
 papel real da classe, e `Profissional` passou a se chamar `Funcionario`
 (mais claro: é quem trabalha na clínica).
@@ -57,11 +57,11 @@ papel real da classe, e `Profissional` passou a se chamar `Funcionario`
 ### 2. `Animal` deixou de carregar atributos de espécie específica
 
 Em `diagrama_v1`, a classe `Animal` (abstrata) tinha atributos como
-`Tamanho`, `Porte` e `Espécie` todos juntos na superclasse — mas porte só
+`Tamanho`, `Porte` e `Espécie` todos juntos na superclasse, mas porte só
 faz sentido para cão/gato, e espécie de ave só faz sentido para pássaro. Em
 `diagrama_v2`, esse problema foi parcialmente resolvido ao criar as
 subclasses `Cachorro`, `Gato` e `Pássaro`, mas a classe `Consulta` (antes
-`Laudo`) ainda carregava atributos como `Peso`, `Tamanho` e `Porte` — que
+`Laudo`) ainda carregava atributos como `Peso`, `Tamanho` e `Porte`, que
 são do **animal**, não da consulta. Isso indicava que esses campos não
 tinham encontrado o lugar certo na refatoração.
 
@@ -86,7 +86,7 @@ isso a duplicação foi eliminada com um método abstrato em `Animal`
 própria regra. Isso resolve a pista do enunciado sobre "quem sabe calcular
 o valor de uma consulta" e, de brinde, resolve também a pista de
 extensibilidade: para a clínica atender coelhos amanhã, basta criar a
-classe `Coelho extends Animal` com seu próprio cálculo — nenhuma outra
+classe `Coelho extends Animal` com seu próprio cálculo, nenhuma outra
 classe do sistema precisa mudar.
 
 ### 4. Vacinação e internação deixaram de ser atributos e passaram a ser interfaces
@@ -97,7 +97,7 @@ vacinação... outros tipos de animal não recebem vacinas pelo protocolo da
 clínica"* e *"alguns animais podem precisar ficar internados... outros não
 têm estrutura de internação disponível"*. Nos diagramas v1 e v2, porém,
 campos como "Status Vacinação" e atributos de internação apareciam soltos
-em `Laudo`/`Consulta`, presentes para **qualquer** animal — inclusive
+em `Laudo`/`Consulta`, presentes para **qualquer** animal, inclusive
 pássaros, que pelo enunciado não vacinam.
 
 Essa é exatamente a situação descrita na dica de modelagem do projeto:
@@ -107,7 +107,7 @@ interface."* Criamos as interfaces `Vacinavel` e `Internavel`.
 `Cachorro` e `Gato` implementam ambas; `Passaro` implementa só
 `Internavel` (decisão confirmada com a dupla: a clínica também interna
 aves, mas não as vacina). Um código que tenta vacinar um `Passaro` agora
-nem compila — o erro de modelagem se torna impossível de cometer por
+nem compila, o erro de modelagem se torna impossível de cometer por
 acidente, em vez de só "não fazer sentido" em tempo de execução.
 
 ### 5. Carteira de vacinação e internação ganharam classes próprias
@@ -115,7 +115,7 @@ acidente, em vez de só "não fazer sentido" em tempo de execução.
 O enunciado pede para a clínica "consultar e **atualizar**" o histórico de
 vacinação — isso pede uma lista de registros, não um único campo de texto
 como existia nos dois diagramas anteriores (`Status Vacinação: char`).
-Criamos `RegistroVacina` (nome da vacina + data) e `CarteiraVacinacao`
+Criamos `RegistroVacina` (nome da vacina e data) e `CarteiraVacinacao`
 (lista de registros), permitindo que cada vacina aplicada seja registrada
 sem sobrescrever a anterior.
 
@@ -148,17 +148,5 @@ dentro de `Consulta` ou `Animal`.
 Para atender ao requisito de relatório por período (total arrecadado,
 número de consultas, animais atendidos), criamos uma classe de gestão
 central, responsável por manter as listas de tutores, funcionários e
-consultas, e por calcular o relatório — em vez de espalhar essa lógica
+consultas, e por calcular o relatório em vez de espalhar essa lógica
 pelas telas do servidor web.
-
----
-
-## Limitações conhecidas (fora do escopo deste projeto)
-
-- Os dados ficam apenas em memória; ao reiniciar o servidor, tudo se perde
-  (não há persistência em arquivo ou banco de dados).
-- Não há autenticação de usuário — qualquer pessoa com acesso ao
-  `localhost:8080` pode usar todas as telas.
-- O veterinário responsável pelas consultas é fixo, para simplificar o
-  fluxo de telas; um sistema de login completo está fora do escopo do
-  enunciado.
