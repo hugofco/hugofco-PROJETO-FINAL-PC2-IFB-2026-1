@@ -8,22 +8,20 @@ como um servidor HTTP em Java puro (sem frameworks), com interface em
 formulários HTML — sem necessidade de terminal para operar o sistema do
 dia a dia.
 
-## Como executar
-
-```bash
-javac Main.java modelo/*.java comportamento/*.java atendimento/*.java clinica/*.java servidor/*.java
-java Main
-```
-
-Acesse **http://localhost:8080** no navegador.
+## Como executar: no próprio vscode, ao rodar, ele irá iniciar o server local em: http://localhost:8080. Você pode acessar em um navegador ou dentro do próprio vscode.
 
 ## Estrutura do projeto
 modelo/         → Pessoa, Funcionario, Tutor, Animal, Cachorro, Gato, Passaro, Porte, EspeciePassaro
+
 comportamento/  → Vacinavel, Internavel, CarteiraVacinacao, RegistroVacina, Internacao
+
 atendimento/    → Consulta, MotivoConsulta, ContaMedica
+
 clinica/        → Clinica, RelatorioPeriodo
+
 servidor/       → ServidorClinica, Paginas
-Main.java       → ponto de entrada
+
+App.java       → ponto de entrada
 
 ## Fluxo de uso
 
@@ -39,7 +37,7 @@ A aplicação é dividida em três telas, navegáveis pelo menu principal:
 
 ---
 
-## O que mudou entre `diagrama_v1`, `diagrama_v2` e esta versão (`diagrama_v3`), e por quê
+## O que mudou entre `diagrama_v1`, e esta versão v3, e por quê?
 
 Esta seção documenta as decisões de design tomadas ao revisar a modelagem
 original, conforme pedido no enunciado ("o que será avaliado é a qualidade
